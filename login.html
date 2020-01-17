@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Login | Tinkerhub MES Marampally</title>
+        <!-- Firebase SDKs -->
+        <script src="/__/firebase/7.6.2/firebase-app.js"></script>
+        <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
+        <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
+        <script src="/__/firebase/init.js"></script>
+        
+        <script src="js/auth.js" type=""></script>
+        <script>
+            window.onload = function() {
+                document.getElementById('google').addEventListener('click', this.handleSignUpWithGoogle, false);
+                document.getElementById('login').addEventListener('click', this.handleLoginWithEmail, false);
+                firebase.auth().onAuthStateChanged(function(user) {
+                  if (user) {
+                    console.log(user);
+                  }
+                });
+              }
+        </script>
+    </head>
+    <body>
+        <input type="email" name="login-email" id="login-email" placeholder="someone@example.com">
+        <input type="password" name="login-password" id="login-password" />
+        <button id="login">login</button>
+        <button id="google">login with Google</button>
+    </body>
+</html>
