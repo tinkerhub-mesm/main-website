@@ -1,31 +1,158 @@
 <html>
-    <head>
-        <title>Signup | Tinkerhub MES Marampally</title>
-        <!-- Firebase SDKs -->
-        <script src="/__/firebase/7.6.2/firebase-app.js"></script>
-        <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
-        <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
-        <script src="/__/firebase/init.js"></script>
-        
-        <script src="js/auth.js" type=""></script>
-        <script>
-            window.onload = function() {
-                document.getElementById('signup').addEventListener('click', this.handleSignUpWithEmail, false);
-                document.getElementById('google').addEventListener('click', this.handleSignUpWithGoogle, false);
-                firebase.auth().onAuthStateChanged(function(user) {
-                  if (user) {
-                    console.log(user);
-                  }
-                });
-              }
-        </script>
-    </head>
-    <body>
-        <button id="google">Signup with Google</button>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Signup | Tinkerhub MES Marampally</title>
+
+    <!-- Firebase SDKs -->
+    <script src="/__/firebase/7.6.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/auth.js" type=""></script>
+    <script>
+      window.onload = function() {
+        firebase.app().options.authDomain = "tinkerhubmesm.com";
+        document.getElementById("signup")
+          .addEventListener("click", this.handleSignUpWithEmail, false);
+        document.getElementById("google")
+          .addEventListener("click", this.handleSignUpWithGoogle, false);
+        document.getElementById("name")
+        .addEventListener("keyup", this.isValidName, false);
+        document.getElementById("email")
+        .addEventListener("focusout", this.isValidEmail, false);
+        document.getElementById("password")
+        .addEventListener("keyup", this.isValidPassword, false);
+        document.getElementById("cpassword")
+        .addEventListener("keyup", this.passMatch, false);
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            //console.log(user);
+          }
+        });
+      };
+    </script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- <button id="google">Signup with Google</button>
         <input type="text" name="name" id="name" placeholder="John doe">
         <input type="email" name="email" id="email" placeholder="someone@example.com">
         <input type="password" name="password" id="password" placeholder="8 characters">
         <input type="password" name="cpassword" id="cpassword" >   
-        <button id="signup">Signup</button>
-    </body>
+        <button id="signup">Signup</button> -->
+    <div class="container-fluid form-container">
+      <div class="row justify-content-md-center">
+          <div class="col-1 col-md-3 "></div>
+          <div class=" animated fadeIn col-10 col-md-6 text-center form">
+            <img
+              src="./TinderHubMesM.jpeg"
+              alt=""
+              class="img-responsive fit-image"
+            />
+            <h3>Sign up</h3>
+            <div class="bord">
+              <center>
+                <div class="alert alert-danger" role="alert" id="error-alert"></div>
+            <div class="form-group animated fadeInUp">
+              <input
+                type="text"
+                class="form-control "
+                placeholder="Your Full Name "
+                id="name"
+              />
+              <span class="err" id="err-name">username cannot be empty</span>
+            </div>
+            <div class="form-group animated fadeInUp">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your Email "
+                id="email"
+                onfocus="document.getElementById('err-email').style.visibility='hidden';"
+              />
+              <span class="err" id="err-email">email cannot be empty</span>
+            </div>
+            <div class="form-group animated fadeInUp">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Your Password "
+                id="password"
+              />
+              <span class="err" id="err-password"
+                >password cannot be empty</span
+              >
+            </div>
+            <div class="form-group animated fadeInUp">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Confirm Password "
+                id="cpassword"
+              />
+              <span class="err" id="err-cpassword"
+                >confirm password cannot be empty</span
+              >
+            </div>
+            <div class="form-group animated fadeInUp">
+              <input
+                type="submit"
+                class="btnSubmit"
+                value="Signup"
+                id="signup"
+              />
+              <span class="already-member"
+              >already a member?
+              <a href="login.html" class="login">login</a></span
+            >
+            </div>
+          </center>
+            </div>
+            <div class="col-xs-1 text-center">
+              <h3>Or sign-in with</h3>
+              <h5></h5>
+              <a
+                href="#"
+                class="fa fa-google g-btn animated fadeInUp"
+                aria-hidden="true"
+                id="google"
+              ></a>
+            </div>
+          </div>
+        <div class="col-1 col-md-3"></div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
