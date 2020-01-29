@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>demo upload</title>
+    <script src="/__/firebase/7.6.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
+    <script src="/__/firebase/7.7.0/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+  </head>
+  <body>
+    <form enctype="multipart/form-data">
+            <label>select image : </label>
+            <input type="file" id="image" accept="image/*"><br><br>
+            <button type="button" onclick="imgUpload()">Upload</button>
+        </form>
+        <script src="../assets/js/data_read.js"></script>
+        <script type="text/javascript">
+
+        function imgUpload() {
+          // this is where image name pass to image var
+          var image=document.getElementById("image").files[0];
+          // upload file function
+          // the file upload function is also a future function and the file url is get on the then block
+        const imageUplodFunction =  uploadFiles({
+            fileName: image,
+          }).then((promisedData) =>{
+            // this is where the promisedData or url of the file upload is get
+            // we can use this url to save into the database by using writeData Funstions
+            console.log(promisedData);
+          });
+
+        }
+
+        </script>
+  </body>
+</html>
