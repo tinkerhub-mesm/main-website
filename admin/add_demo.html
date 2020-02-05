@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>add demo</title>
+    <script src="/__/firebase/7.6.2/firebase-app.js"></script>
+    <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
+    <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+  <script src="../assets/js/data_read.js"></script>
+  </head>
+  <body>
+<form class="" action="index.html" method="post">
+  <input type="text" name="" value="" id="weeklyChallengens" placeholder="weekly challange name">
+  <input type="text" name="" value=""  id="weeklyChallengensdec" placeholder="Descriptions">
+  <button type="button" name="button" id="add" >add</button>
+</form>
+
+<script type="text/javascript">
+  document.getElementById("add").addEventListener("click", ()=>{
+    inputDatsFunctions();
+  });
+</script>
+
+<script type="text/javascript">
+function inputDatsFunctions() {
+  var inputsDatas = {
+    weeklyChallenegesName: document.getElementById('weeklyChallengens').value,
+    weeklyChallenegesdesc: document.getElementById('weeklyChallengensdec').value,
+    weeklyChallenegesNamestatus: 1,
+  };
+  writeData({
+    collection: 'WeeklyChallenges',
+    inputsDatas: inputsDatas,
+  });
+
+}
+</script>
+  </body>
+</html>

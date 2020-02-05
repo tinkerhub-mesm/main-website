@@ -7,8 +7,10 @@
     <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
     <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
     <script src="/__/firebase/init.js"></script>
-
-    <script src="js/auth.js" type=""></script>
+<script src="assets\js\firebase_global_configs.js"></script>
+    <script src="assets\js\auth.js"></script>
+    <!-- This is authentification admin checker -->
+    <script src="assets\js\auth_permission_check.js"></script>
     <script>
       window.onload = function() {
         firebase.app().options.authDomain = "tinkerhubmesm.com";
@@ -21,7 +23,8 @@
           .addEventListener("click", this.handleLoginWithEmail, false);
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
-            //console.log(user);
+            // authetification permission is checker my users email adreess
+            authPermissionChecker({username: user.email});
           }
         });
       };
@@ -41,21 +44,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link href="assets\css\style.css" rel="stylesheet">
   </head>
   <body>
     <!-- <button id="google">Signup with Google</button>
         <input type="text" name="name" id="name" placeholder="John doe">
         <input type="email" name="email" id="email" placeholder="someone@example.com">
         <input type="password" name="password" id="password" placeholder="8 characters">
-        <input type="password" name="cpassword" id="cpassword" >   
+        <input type="password" name="cpassword" id="cpassword" >
         <button id="signup">Signup</button> -->
     <div class="container-fluid form-container">
       <div class="row justify-content-md-center">
         <div class="col-1 col-md-3 "></div>
         <div class=" animated fadeIn col-10 col-md-6 text-center form">
           <img
-            src="./TinderHubMesM.jpeg"
+            src="assets\Images\TinderHubMesM.jpeg"
             alt=""
             class="img-responsive fit-image"
           />
