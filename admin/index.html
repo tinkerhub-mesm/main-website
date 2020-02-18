@@ -1,93 +1,135 @@
-<!-- This is a demo files -->
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>demo</title>
-    <script src="/__/firebase/7.6.2/firebase-app.js"></script>
-    <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
-    <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
-    <script src="/__/firebase/init.js"></script>
-  <script src="..\assets\js\data_read.js"></script>
-  </head>
-  <body>
-    <p>weekly challange</p>
-    <a href="add_demo.html">add demo</a>
+<html lang="en">
 
-    <!-- This is a demo Table -->
-    <table id="weeklyTable">
-      <thead>
-        <tr>
-          <td>sino</td>
-          <td>Challenge Name</td>
-          <td>Desc</td>
-          <td>Status</td>
-          <td>id</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
+<head>
 
-        </tr>
-      </tbody>
-    </table>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <script type="text/javascript" async>
-      function tableDataFetcher(parameters) {
-        // you can give loading screen function here
-        const future = readData({
-          collection: parameters.collection,
-        }).then((promisedData) =>{
-          //all the data are get to this promisedData
-            console.log(promisedData);
-          // you can add modification of table in the function
+  <title>challenges</title>
 
-          var table = document.getElementById(parameters.tableName);
-          promisedData.forEach( (data,i) => {
-            // this where all data insert into the table
-          //  console.log(data);
-            var row = table.insertRow(i+1);
-              var cell1 = row.insertCell(0);
-              var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(3);
-                var cell5 = row.insertCell(4);
-                var cell6 = row.insertCell(5);
-                cell1.innerHTML = i+1;
-                cell2.innerHTML = promisedData[i].data.inputsDatas.weeklyChallenegesName;
-                cell3.innerHTML = promisedData[i].data.inputsDatas.weeklyChallenegesdesc;
-                cell4.innerHTML = promisedData[i].data.inputsDatas.weeklyChallenegesNamestatus;
-                // demo to view id of the datas
-                cell5.innerHTML = promisedData[i].id;
-                // assign class as the id of this documnet therefore we could get the documnet id by this.className in onclick
-                cell6.innerHTML = '<button type="button" name="button" id="edit" class="'+promisedData[i].id+'" onclick="editDataFunctions(this.className)">Edit</button>';
-          });
-          });
-      }
-      tableDataFetcher({
-        collection: 'WeeklyChallenges',
-        tableName:'weeklyTable',
-      });
-    </script>
-    <script type="text/javascript">
-    // this is where editing fuction take place
-      function editDataFunctions(className) {
-      //  console.log(className);
-// note that this whole object is push to the database as a map and replace existing data by this map
-        // this is where editted data take in just like the writeData object
-        var inputsDatas= {
-          weeklyChallenegesName: 'edited title',
-          weeklyChallenegesdesc: 'decs edited',
-          weeklyChallenegesNamestatus: 0,
-        };
-        // this function also have future functions
-        editDatas({
-          inputsDatas : inputsDatas,
-          documents : className,
-          collection : 'WeeklyChallenges',
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Admin beta</div>
+      <div class="list-group list-group-flush">
+        <a href="index.html" class="list-group-item list-group-item-action bg-light">Challenges</a>
+        <a href="imageupload.html" class="list-group-item list-group-item-action bg-light">Add image</a>
+    
+     </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <h2 class="text-center"> weekly challange</h2>
+      <a href="add_demo.html"><button type="button" class="btn btn-primary btn-lg" style="float:right;">Add challenge</button></a>
+  
+      <!-- This is a demo Table -->
+      <table id="weeklyTable" class="table table-bordered">
+        <thead >
+          <tr>
+            <td scope="col">sino</td>
+            <td scope="col">Challenge Name</td>
+            <td scope="col">Desc</td>
+            <td scope="col">Status</td>
+            <td scope="col">id</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="col"></td>
+  
+          </tr>
+        </tbody>
+      </table>
+  
+      <script type="text/javascript" async>
+        function tableDataFetcher(parameters) {
+          // you can give loading screen function here
+          const future = readData({
+            collection: parameters.collection,
+          }).then((promisedData) =>{
+            //all the data are get to this promisedData
+              console.log(promisedData);
+            // you can add modification of table in the function
+  
+            var table = document.getElementById(parameters.tableName);
+            promisedData.forEach( (data,i) => {
+              // this where all data insert into the table
+            //  console.log(data);
+              var row = table.insertRow(i+1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                  var cell3 = row.insertCell(2);
+                  var cell4 = row.insertCell(3);
+                  var cell5 = row.insertCell(4);
+                  var cell6 = row.insertCell(5);
+                  cell1.innerHTML = i+1;
+                  cell2.innerHTML = promisedData[i].data.inputsDatas.weeklyChallenegesName;
+                  cell3.innerHTML = promisedData[i].data.inputsDatas.weeklyChallenegesdesc;
+                  cell4.innerHTML = promisedData[i].data.inputsDatas.weeklyChallenegesNamestatus;
+                  // demo to view id of the datas
+                  cell5.innerHTML = promisedData[i].id;
+                  // assign class as the id of this documnet therefore we could get the documnet id by this.className in onclick
+                  cell6.innerHTML = '<button type="button" name="button" id="edit" class="'+promisedData[i].id+'" onclick="editDataFunctions(this.className)">Edit</button>';
+            });
+            });
+        }
+        tableDataFetcher({
+          collection: 'WeeklyChallenges',
+          tableName:'weeklyTable',
         });
-      }
-    </script>
-  </body>
+      </script>
+      <script type="text/javascript">
+      // this is where editing fuction take place
+        function editDataFunctions(className) {
+        //  console.log(className);
+  // note that this whole object is push to the database as a map and replace existing data by this map
+          // this is where editted data take in just like the writeData object
+          var inputsDatas= {
+            weeklyChallenegesName: 'edited title',
+            weeklyChallenegesdesc: 'decs edited',
+            weeklyChallenegesNamestatus: 0,
+          };
+          // this function also have future functions
+          editDatas({
+            inputsDatas : inputsDatas,
+            documents : className,
+            collection : 'WeeklyChallenges',
+          });
+        }
+      </script>
+
+      
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
 </html>
