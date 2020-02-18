@@ -8,13 +8,47 @@
     <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
     <script src="/__/firebase/init.js"></script>
   <script src="../assets/js/data_read.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title> add challenges</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
   </head>
   <body>
+    <div class="d-flex" id="wrapper">
+
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Admin beta</div>
+        <div class="list-group list-group-flush">
+          <a href="index.html" class="list-group-item list-group-item-action bg-light">Challenges</a>
+          <a href="imageupload.html" class="list-group-item list-group-item-action bg-light">Add image</a>
+      
+       </div>
+      </div>
+      <div id="page-content-wrapper">
+        <h2 class="text-center"> New weekly challenge</h2>
+        <div class="container">
 <form class="" action="index.html" method="post">
-  <input type="text" name="" value="" id="weeklyChallengens" placeholder="weekly challange name">
-  <input type="text" name="" value=""  id="weeklyChallengensdec" placeholder="Descriptions">
-  <button type="button" name="button" id="add" >add</button>
+  <div class="form-group col-lg-7">
+  <input type="text" name="" value="" id="weeklyChallengens" placeholder="weekly challange name" class="form-control">
+  <small id="emailHelp" class="form-text text-muted">enter the challenge name here</small>
+</div>
+<div class="form-group  col-lg-7">
+  <input type="text" name="" value=""  id="weeklyChallengensdec" placeholder="Descriptions"  class="form-control">
+  <small id="emailHelp" class="form-text text-muted">The guidelines are specified here</small>
+</div>
+  <button type="button" name="button" id="add" class="btn btn-primary btn-lg" style="float:left;" >add</button>
 </form>
+</div>
+</div>
 
 <script type="text/javascript">
   document.getElementById("add").addEventListener("click", ()=>{

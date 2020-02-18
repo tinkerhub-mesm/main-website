@@ -8,13 +8,43 @@
     <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
     <script src="/__/firebase/7.7.0/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title> upload images</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
   </head>
   <body>
+    <div class="d-flex" id="wrapper">
+
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Admin beta</div>
+        <div class="list-group list-group-flush">
+          <a href="index.html" class="list-group-item list-group-item-action bg-light">Challenges</a>
+          <a href="imageupload.html" class="list-group-item list-group-item-action bg-light">Add image</a>
+      
+       </div>
+      </div>
+     
+        <div id="page-content-wrapper">
+          <h2 class="text-center">image upload</h2>
     <form enctype="multipart/form-data">
+      <div class="form-group col-lg-7">
             <label>select image : </label>
-            <input type="file" id="image" accept="image/*"><br><br>
-            <button type="button" onclick="imgUpload()">Upload</button>
+            <input type="file" id="image" accept="image/*" class="form-control"><br><br>
+            <button type="button" onclick="imgUpload()" class="btn btn-primary btn-lg" style="float:left;">Upload</button>
+          </div>
         </form>
+        </div>
+        </div>
         <script src="../assets/js/data_read.js"></script>
         <script type="text/javascript">
 
