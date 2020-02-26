@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>challenges</title>
+  <title>Dashboard</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
@@ -16,6 +16,7 @@
   <script src="/__/firebase/7.6.2/firebase-app.js"></script>
   <script src="/__/firebase/7.6.2/firebase-auth.js"></script>
   <script src="/__/firebase/7.6.2/firebase-firestore.js"></script>
+  <script src="/__/firebase/7.7.0/firebase-storage.js"></script>
   <script src="/__/firebase/init.js"></script>
 </head>
 <body>
@@ -37,7 +38,7 @@
          <div class="modal-content">
            <!-- Modal Header -->
            <div class="modal-header">
-             <h4 class="modal-title">Add New WeeklyChallenges</h4>
+             <h4 class="modal-title">Add New Events</h4>
              <button type="button" class="close" data-dismiss="modal">&times;</button>
            </div>
            <!-- Modal body -->
@@ -54,7 +55,14 @@
         <label for="usr">Rules:</label>
         <textarea class="form-control" rows="5" id="WeeklyChallenges_rules" placeholder="Rules" required></textarea>
         </div>
-        <button type="button" name="button" class="btn btn-primary" onclick="addNewWeeklyChallanges()" id="newWeeklyChallnges">Submit</button>
+        <form enctype="multipart/form-data">
+          <div class="form-group col-lg-7">
+                <label>select image : </label>
+                <input type="file" id="image" accept="image/*" class="form-control"><br><br>
+                <button type="button" onclick="imgUpload()" class="btn btn-primary btn-lg" style="float:left;">Upload</button>
+              </div>
+            </form>
+    <!--    <button type="button" name="button" class="btn btn-primary" onclick="addNewEvents()" id="newWeeklyChallnges">Submit</button>-->
 
            </div>
            <!-- Modal footer -->
@@ -66,8 +74,8 @@
      </div>
 
     <div id="page-content-wrapper">
-      <h2 class="text-center"> weekly challange</h2>
-      <button type="button" class="btn btn-primary btn-lg" style="float:right;" data-toggle="modal" data-target="#newchallenges">Add challenge</button>
+      <h2 class="text-center"> Special Events</h2>
+      <button type="button" class="btn btn-primary btn-lg" style="float:right;" data-toggle="modal" data-target="#newchallenges">Add Events</button>
 <!-- This is the winner making model-->
 <div class="modal" id="myModal">
    <div class="modal-dialog">
@@ -85,6 +93,7 @@
 </div>
 <button type="button" name="button" class="btn btn-primary" id="winnerbtn" onclick="winnerAdding()">Submit</button>
        </div>
+
        <!-- Modal footer -->
        <div class="modal-footer">
          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -117,17 +126,37 @@
 </div>
 <script src="..\assets\js\data_read.js"></script>
 <script src="..\assets\js\style_managment.js"></script>
-<script src="..\assets\js\weekly_challenges_js.js"></script>
+<script src="..\assets\js\special_events.js"></script>
   <!-- /#wrapper -->
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Menu Toggle Script -->
+  <script type="text/javascript">
+
+  function imgUpload() {
+    // this is where image name pass to image var
+    var image=document.getElementById("image").files[0];
+    // upload file function
+    // the file upload function is also a future function and the file url is get on the then block
+  const imageUplodFunction =  uploadFiles({
+      fileName: image,
+    }).then((promisedData) =>{
+      // this is where the promisedData or url of the file upload is get
+      // we can use this url to save into the database by using writeData Funstions
+      console.log(promisedData);
+      addNewEvents(promisedData);
+    });
+
+  }
+
+  </script>
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+
 </body>
 </html>

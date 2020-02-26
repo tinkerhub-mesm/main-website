@@ -30,10 +30,10 @@
         <div class="list-group list-group-flush">
           <a href="index.html" class="list-group-item list-group-item-action bg-light">Challenges</a>
           <a href="imageupload.html" class="list-group-item list-group-item-action bg-light">Add image</a>
-      
+
        </div>
       </div>
-     
+
         <div id="page-content-wrapper">
           <h2 class="text-center">image upload</h2>
     <form enctype="multipart/form-data">
@@ -46,23 +46,6 @@
         </div>
         </div>
         <script src="../assets/js/data_read.js"></script>
-        <script type="text/javascript">
 
-        function imgUpload() {
-          // this is where image name pass to image var
-          var image=document.getElementById("image").files[0];
-          // upload file function
-          // the file upload function is also a future function and the file url is get on the then block
-        const imageUplodFunction =  uploadFiles({
-            fileName: image,
-          }).then((promisedData) =>{
-            // this is where the promisedData or url of the file upload is get
-            // we can use this url to save into the database by using writeData Funstions
-            console.log(promisedData);
-          });
-
-        }
-
-        </script>
   </body>
 </html>
