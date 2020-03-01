@@ -1,0 +1,39 @@
+<!doctype html>
+
+<title>CodeMirror: Breakpoint Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/javascript/javascript.js"></script>
+
+<link href="assets\css\codemirror.css" rel="stylesheet">
+<script src="assets\js\codemirror.js"></script>
+<script src="assets\js\javascript.js"></script>
+
+
+<article>
+<h2>Code Mirror Editors</h2>
+<form><textarea id="code" name="code">
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+  lineNumbers: true,
+  gutters: ["CodeMirror-linenumbers", "breakpoints"]
+});
+editor.on("gutterClick", function(cm, n) {
+  var info = cm.lineInfo(n);
+  cm.setGutterMarker(n, "breakpoints", info.gutterMarkers ? null : makeMarker());
+});
+
+function makeMarker() {
+  var marker = document.createElement("div");
+  marker.style.color = "#822";
+  marker.innerHTML = "●";
+  return marker;
+}
+</textarea></form>
+
+
+    <script>eval(document.getElementById("code").value);</script>
+
+  </article>
