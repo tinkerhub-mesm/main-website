@@ -1,3 +1,4 @@
+
 // all the retrived Data are saved into weeklyChallenegs_data_saver for temporary
 var weeklyChallenegs_data_saver = null;
 var winnerPersonId = null;
@@ -33,24 +34,22 @@ weeklyChallenegs_data_saver = promisedData;
           var cell5 = row.insertCell(4);
           var cell6 = row.insertCell(5);
           var cell7 = row.insertCell(6);
-          var cell8 = row.insertCell(7);
           cell1.innerHTML = i+1;
           cell2.innerHTML = promisedData[i].data.inputsDatas.name;
           cell3.innerHTML = promisedData[i].data.inputsDatas.desc;
-          cell4.innerHTML = promisedData[i].data.inputsDatas.status;
+          cell4.innerHTML = promisedData[i].data.inputsDatas.syllabus;
           // demo to view id of the datas
           cell5.innerHTML = promisedData[i].id;
-          cell6.innerHTML = promisedData[i].data.inputsDatas.winnersMail;
-          cell7.innerHTML = promisedData[i].data.inputsDatas.rules;
-          // assign class as the id of this documnet therefore we could get the documnet id by this.className in onclick
-          cell8.innerHTML = '<button type="button" name="button" id="'+promisedData[i].id+'" class="btn btn-primary"  data-toggle="modal" data-target="#myModal" onclick="winnerModels(this.id)">Select Winner</button> <button type="button" name="button" id="'+promisedData[i].id+'" class="btn btn-primary" onclick="statusChangers(this.id)" style=" margin: 10px;">Finish Status</button>';
+          cell6.innerHTML = promisedData[i].data.inputsDatas.documnetation;
+          cell7.innerHTML = promisedData[i].data.inputsDatas.date;
+          // assign class as the id of this documnet therefore we could get the documnet id by this.className in onclick  
     });
     loading_animations_disable();
     });
 }
 
 tableDataFetcher({
-  collection: 'SpecialEvents',
+  collection: 'workshops',
   tableName:'weeklyTable',
 });
 
@@ -80,9 +79,7 @@ var winnerMailId = document.getElementById('winneremailsid').value;
         winnerStatus: '1',
         status: '0',
         winnersMail: winnerMailId,
-        imgUrl: weeklyChallenegs_data_saver[i].data.inputsDatas.imgUrl,
         rules: weeklyChallenegs_data_saver[i].data.inputsDatas.rules,
-        date: weeklyChallenegs_data_saver[i].data.inputsDatas.date,
       };
     }
   }
@@ -92,11 +89,10 @@ var winnerMailId = document.getElementById('winneremailsid').value;
   editDatas({
     inputsDatas : inputsDatas,
     documents : docid,
-    collection : 'SpecialEvents',
+    collection : 'WeeklyChallenges',
   }).then((promisedData) =>{
     // Reloading page when update function is done
-    console.log("insd");
-  window.location.href = "specialEvents.html";
+  window.location.href = "index.html";
   })
 }
 
@@ -120,10 +116,8 @@ function statusChangers(ids) {
         desc: weeklyChallenegs_data_saver[i].data.inputsDatas.desc,
         winnerStatus: weeklyChallenegs_data_saver[i].data.inputsDatas.winnerStatus,
         status: '0',
-          imgUrl: weeklyChallenegs_data_saver[i].data.inputsDatas.imgUrl,
         winnersMail: weeklyChallenegs_data_saver[i].data.inputsDatas.winnersMail,
         rules: weeklyChallenegs_data_saver[i].data.inputsDatas.rules,
-        date: weeklyChallenegs_data_saver[i].data.inputsDatas.date,
       };
     }
   }
@@ -133,14 +127,14 @@ function statusChangers(ids) {
   editDatas({
     inputsDatas : inputsDatas,
     documents : ids,
-    collection : 'SpecialEvents',
+    collection : 'WeeklyChallenges',
   }).then((promisedData) =>{
     // Reloading page when update function is done
- window.location.href = "specialEvents.html";
+  window.location.href = "index.html";
   })
 }
 
-function addNewEvents(imgurl) {
+function addNewWeeklyChallanges() {
   // you can give loading screen function here
   loading_animations_active();
 
@@ -151,19 +145,16 @@ function addNewEvents(imgurl) {
   var inputsDatas = {
     name: document.getElementById('WeeklyChallenges_name').value,
     desc: document.getElementById('WeeklyChallenges_desc').value,
-    winnerStatus: '1',
-    status: '1',
-    winnersMail: '',
-    rules: document.getElementById('WeeklyChallenges_rules').value,
-    imgUrl: imgurl,
+    syllabus: document.getElementById('workshopSyllabus').value,
+    documnetation: document.getElementById('workshopsDocumnetation').value,
     date: document.getElementById('workshopsDate').value,
   };
   writeData({
-    collection: 'SpecialEvents',
+    collection: 'workshops',
     inputsDatas: inputsDatas,
   }).then((promisedData) =>{
     loading_animations_disable();
     // Reloading page when update function is done
-  window.location.href = "specialEvents.html";
+  window.location.href = "workshops.html";
   });
 }

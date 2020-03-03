@@ -34,6 +34,7 @@ weeklyChallenegs_data_saver = promisedData;
           var cell6 = row.insertCell(5);
           var cell7 = row.insertCell(6);
           var cell8 = row.insertCell(7);
+          var cell9 = row.insertCell(8);
           cell1.innerHTML = i+1;
           cell2.innerHTML = promisedData[i].data.inputsDatas.name;
           cell3.innerHTML = promisedData[i].data.inputsDatas.desc;
@@ -42,6 +43,7 @@ weeklyChallenegs_data_saver = promisedData;
           cell5.innerHTML = promisedData[i].id;
           cell6.innerHTML = promisedData[i].data.inputsDatas.winnersMail;
           cell7.innerHTML = promisedData[i].data.inputsDatas.rules;
+          cell9.innerHTML = promisedData[i].data.inputsDatas.date;
           // assign class as the id of this documnet therefore we could get the documnet id by this.className in onclick
           cell8.innerHTML = '<button type="button" name="button" id="'+promisedData[i].id+'" class="btn btn-primary"  data-toggle="modal" data-target="#myModal" onclick="winnerModels(this.id)">Select Winner</button> <button type="button" name="button" id="'+promisedData[i].id+'" class="btn btn-primary" onclick="statusChangers(this.id)" style=" margin: 10px;">Finish Status</button>';
     });
@@ -81,6 +83,7 @@ var winnerMailId = document.getElementById('winneremailsid').value;
         status: '0',
         winnersMail: winnerMailId,
         rules: weeklyChallenegs_data_saver[i].data.inputsDatas.rules,
+        date: weeklyChallenegs_data_saver[i].data.inputsDatas.date,
       };
     }
   }
@@ -119,6 +122,7 @@ function statusChangers(ids) {
         status: '0',
         winnersMail: weeklyChallenegs_data_saver[i].data.inputsDatas.winnersMail,
         rules: weeklyChallenegs_data_saver[i].data.inputsDatas.rules,
+        date: weeklyChallenegs_data_saver[i].data.inputsDatas.date,
       };
     }
   }
@@ -150,6 +154,7 @@ function addNewWeeklyChallanges() {
     status: '1',
     winnersMail: '',
     rules: document.getElementById('WeeklyChallenges_rules').value,
+    date: document.getElementById('workshopsDate').value,
   };
   writeData({
     collection: 'WeeklyChallenges',
