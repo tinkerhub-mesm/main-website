@@ -26,24 +26,27 @@ function readData(parameters) {
 }
 // this is where the data is inserted in to the database this functions also have future block
 // return true if no error occur in the javascript as future
-function writeData(parameters) {
+  function writeData(parameters) {
   var inputsDatas = parameters.inputsDatas;
   const promiseToken = new Promise((resolve, reject) => {
     db.collection(parameters.collection).add({
         inputsDatas
-      });
-      resolve(true);
+      }).then(()=> {
+          resolve(true);
+      })
   });
   return promiseToken;
 }
 // this is edit data main functions
-function editDatas(parameters) {
+async function editDatas(parameters) {
   var inputsDatas = parameters.inputsDatas;
-  const promiseToken = new Promise((resolve, reject) => {
-    db.collection(parameters.collection).doc(parameters.documents).update({
+  promiseToken = new Promise((resolve, reject) => {
+   db.collection(parameters.collection).doc(parameters.documents).update({
         inputsDatas
-     });
-      resolve(true);
+     }).then((promisedData)=> {
+resolve(true);
+});
+
   });
   return promiseToken;
 }
@@ -66,10 +69,18 @@ function uploadFiles(parameters) {
           //observe state change events such as progress , pause ,resume
           //get task progress by including the number of bytes uploaded and total
           //number of bytes
+
           var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+            notificatiions({
+              messages: progress+'% is uploaded',
+            });
           console.log("upload is " + progress +" done");
       },function (error) {
           //handle error here
+
+            notificatiions({
+              messages: 'Error occured',
+            });
           console.log(error.message);
       },function () {
          //handle successful uploads on complete

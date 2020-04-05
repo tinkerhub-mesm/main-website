@@ -1,5 +1,5 @@
 function authPermissionChecker(parametrs) {
-db.collection('users').where("name", "==", "mohammed fayez").get().then(
+db.collection('users').where("email", "==", parametrs.username).get().then(
   (snapshot) => {
     snapshot.docs.forEach( doc => {
       if (doc.data().email == parametrs.username) {

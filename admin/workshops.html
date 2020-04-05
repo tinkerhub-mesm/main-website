@@ -39,7 +39,7 @@
          <div class="modal-content">
            <!-- Modal Header -->
            <div class="modal-header">
-             <h4 class="modal-title">Add New WeeklyChallenges</h4>
+             <h4 class="modal-title">Add New workshops</h4>
              <button type="button" class="close" data-dismiss="modal">&times;</button>
            </div>
            <!-- Modal body -->
@@ -53,8 +53,12 @@
         <textarea class="form-control" rows="5" id="WeeklyChallenges_desc" placeholder="Description" required></textarea>
         </div>
         <div class="form-group">
-        <label for="usr">Rules:</label>
-        <textarea class="form-control" rows="5" id="WeeklyChallenges_rules" placeholder="Rules" required></textarea>
+        <label for="usr">Syllabus:</label>
+      <input type="text" class="form-control" id="workshopSyllabus" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+        <label for="usr">Documnetation:</label>
+      <input type="text" class="form-control" id="workshopsDocumnetation" placeholder="Name" required>
         </div>
         <div class="form-group">
         <label for="usr">Date:</label>
@@ -72,8 +76,8 @@
      </div>
 
     <div id="page-content-wrapper">
-      <h2 class="text-center"> weekly challange</h2>
-      <button type="button" class="btn btn-primary btn-lg" style="float:right;" data-toggle="modal" data-target="#newchallenges">Add challenge</button>
+      <h2 class="text-center"> Workshops</h2>
+      <button type="button" class="btn btn-primary btn-lg" style="float:right;" data-toggle="modal" data-target="#newchallenges">Add workshops</button>
 <!-- This is the winner making model-->
 <div class="modal" id="myModal">
    <div class="modal-dialog">
@@ -104,12 +108,11 @@
         <thead >
           <tr>
             <td>sino</td>
-            <td >Challenge Name</td>
+            <td >Workshop Name</td>
             <td  style="width: 200px;">Desc</td>
-            <td >Status</td>
+            <td >Syllabus</td>
             <td>id</td>
-            <td >Winner</td>
-            <td>Rules</td>
+            <td>Documnetation</td>
             <td>Date</td>
           </tr>
         </thead>
@@ -124,7 +127,8 @@
 </div>
 <script src="..\assets\js\data_read.js"></script>
 <script src="..\assets\js\style_managment.js"></script>
-<script src="..\assets\js\weekly_challenges_js.js"></script>
+<script src="..\assets\js\workshops.js"></script>
+
   <!-- /#wrapper -->
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
